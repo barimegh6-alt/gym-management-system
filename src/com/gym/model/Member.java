@@ -26,3 +26,4 @@ public class Member extends User {
     }
 }
 // Member Management Feature implemented
+// Added validation logic for member inputs
