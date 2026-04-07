@@ -25,3 +25,4 @@ public class Member extends User {
         System.out.println("I am a Gym Member: " + name);
     }
 }
+// Member Management Feature implemented
