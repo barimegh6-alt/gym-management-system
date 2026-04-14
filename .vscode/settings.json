@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "GymMS_Fixed/lib/mysql-connector-j-9.6.0.jar",
+        "c:\\javafx\\lib\\javafx.base.jar",
+        "c:\\javafx\\lib\\javafx.controls.jar",
+        "c:\\javafx\\lib\\javafx.fxml.jar",
+        "c:\\javafx\\lib\\javafx.graphics.jar",
+        "c:\\javafx\\lib\\javafx.media.jar",
+        "c:\\javafx\\lib\\javafx.swing.jar",
+        "c:\\javafx\\lib\\javafx.web.jar",
+        "c:\\javafx\\lib\\javafx-swt.jar"
+    ]
+}

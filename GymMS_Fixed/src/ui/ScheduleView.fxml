@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ui.ScheduleController"
+      spacing="0"
+      maxWidth="1.7976931348623157E308"
+      maxHeight="1.7976931348623157E308">
+
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="14"
+          minHeight="54" maxHeight="54">
+        <padding><Insets top="0" bottom="0" left="16" right="16"/></padding>
+        <Label text="📅  Schedule Management" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <HBox spacing="14" VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308">
+        <padding><Insets top="14" bottom="12" left="16" right="16"/></padding>
+
+        <!-- TABLE -->
+        <VBox HBox.hgrow="ALWAYS" spacing="10" maxWidth="1.7976931348623157E308">
+            <TableView fx:id="scheduleTable" VBox.vgrow="ALWAYS" styleClass="data-table"
+                       maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308">
+                <columns>
+                    <TableColumn fx:id="colId"       text="ID"           prefWidth="46"/>
+                    <TableColumn fx:id="colMember"   text="Member"       prefWidth="148"/>
+                    <TableColumn fx:id="colTrainer"  text="Trainer"      prefWidth="138"/>
+                    <TableColumn fx:id="colDate"     text="Date"         prefWidth="98"/>
+                    <TableColumn fx:id="colTime"     text="Time"         prefWidth="88"/>
+                    <TableColumn fx:id="colType"     text="Session Type" prefWidth="138"/>
+                    <TableColumn fx:id="colDuration" text="Duration(min)" prefWidth="88"/>
+                    <TableColumn fx:id="colNotes"    text="Notes"        prefWidth="128"/>
+                    <TableColumn fx:id="colStatus"   text="Status"       prefWidth="88"/>
+                </columns>
+                <placeholder>
+                    <Label text="No sessions scheduled yet. Book one using the form →"
+                           style="-fx-text-fill:#475569;-fx-font-size:13px;"/>
+                </placeholder>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER_LEFT" minHeight="38">
+                <Button text="✅  Mark Complete"  styleClass="btn-success" onAction="#handleMarkComplete"/>
+                <Button text="❌  Cancel Session" styleClass="btn-warning" onAction="#handleCancel"/>
+                <Button text="🗑  Delete"          styleClass="btn-danger"  onAction="#handleDelete"/>
+                <Label fx:id="messageLabel" styleClass="msg-label" wrapText="true" maxWidth="300"/>
+            </HBox>
+        </VBox>
+
+        <!-- FORM in ScrollPane -->
+        <ScrollPane prefWidth="306" minWidth="306" maxWidth="306"
+                    fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308"
+                    style="-fx-background-color:transparent;-fx-background:transparent;">
+
+            <VBox styleClass="form-panel" spacing="11" maxWidth="1.7976931348623157E308">
+                <padding><Insets top="16" bottom="20" left="16" right="16"/></padding>
+
+                <Label text="Book New Session" styleClass="form-title"/>
+                <Separator/>
+
+                <VBox spacing="4">
+                    <Label text="SELECT MEMBER *" styleClass="field-label"/>
+                    <ComboBox fx:id="memberCombo" styleClass="combo-field"
+                              maxWidth="1.7976931348623157E308"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="SELECT TRAINER *" styleClass="field-label"/>
+                    <ComboBox fx:id="trainerCombo" styleClass="combo-field"
+                              maxWidth="1.7976931348623157E308"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="SESSION DATE *" styleClass="field-label"/>
+                    <DatePicker fx:id="sessionDatePicker" maxWidth="1.7976931348623157E308"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="SESSION TIME *" styleClass="field-label"/>
+                    <ComboBox fx:id="timeCombo" styleClass="combo-field"
+                              maxWidth="1.7976931348623157E308"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="SESSION TYPE" styleClass="field-label"/>
+                    <ComboBox fx:id="sessionTypeCombo" styleClass="combo-field"
+                              maxWidth="1.7976931348623157E308"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="DURATION (minutes) *" styleClass="field-label"/>
+                    <TextField fx:id="durationField" styleClass="input-field" promptText="e.g. 60"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="NOTES" styleClass="field-label"/>
+                    <TextArea fx:id="notesArea" styleClass="text-area"
+                              promptText="Session notes…" prefRowCount="3"/>
+                </VBox>
+
+                <VBox spacing="8" style="-fx-padding:8 0 0 0;">
+                    <Button text="📅  Schedule Session"
+                            styleClass="btn-primary" onAction="#handleSchedule"
+                            maxWidth="1.7976931348623157E308" prefHeight="40"/>
+                    <Button text="✖  Clear Form"
+                            styleClass="btn-secondary" onAction="#clearForm"
+                            maxWidth="1.7976931348623157E308" prefHeight="36"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </HBox>
+</VBox>

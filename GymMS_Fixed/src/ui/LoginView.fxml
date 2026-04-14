@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ui.LoginController"
+            styleClass="root-pane"
+            prefWidth="920" prefHeight="600">
+
+    <HBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- LEFT branding panel -->
+        <VBox styleClass="brand-panel" prefWidth="460" alignment="CENTER" spacing="18">
+            <padding><Insets top="60" bottom="60" left="50" right="50"/></padding>
+            <Label text="💪" style="-fx-font-size:64px;"/>
+            <Label text="FitPro GMS"            styleClass="brand-title"/>
+            <Label text="Gym Management System" styleClass="brand-subtitle"/>
+            <Separator style="-fx-background-color:#334155;" maxWidth="200"/>
+            <Label text="Manage members, trainers, workouts and schedules — all in one place."
+                   styleClass="brand-desc" wrapText="true" textAlignment="CENTER"/>
+            <VBox spacing="10" style="-fx-padding:20 0 0 0;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="✅" style="-fx-font-size:13px;"/>
+                    <Label text="Role-based access control"  styleClass="feature-item"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="✅" style="-fx-font-size:13px;"/>
+                    <Label text="Full CRUD operations"       styleClass="feature-item"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="✅" style="-fx-font-size:13px;"/>
+                    <Label text="Workout &amp; schedule management" styleClass="feature-item"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="✅" style="-fx-font-size:13px;"/>
+                    <Label text="MySQL database integration" styleClass="feature-item"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- RIGHT login form -->
+        <VBox styleClass="login-panel" prefWidth="460" alignment="CENTER" spacing="20">
+            <padding><Insets top="60" bottom="60" left="50" right="50"/></padding>
+            <Label text="Welcome Back"    styleClass="login-title"/>
+            <Label text="Sign in to your account" styleClass="login-subtitle"/>
+
+            <VBox spacing="6" maxWidth="340">
+                <Label text="Email Address" styleClass="field-label"/>
+                <TextField fx:id="emailField" styleClass="input-field"
+                           promptText="Enter your email" maxWidth="340"/>
+            </VBox>
+            <VBox spacing="6" maxWidth="340">
+                <Label text="Password" styleClass="field-label"/>
+                <PasswordField fx:id="passwordField" styleClass="input-field"
+                               promptText="Enter your password" maxWidth="340"/>
+            </VBox>
+            <VBox spacing="6" maxWidth="340">
+                <Label text="Login As" styleClass="field-label"/>
+                <ComboBox fx:id="roleComboBox" styleClass="combo-field" maxWidth="340"/>
+            </VBox>
+
+            <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" maxWidth="340"/>
+
+            <Button fx:id="loginButton" text="Sign In →" styleClass="login-btn"
+                    onAction="#handleLogin" maxWidth="340" prefHeight="46"/>
+
+            <VBox spacing="4" alignment="CENTER" style="-fx-padding:10 0 0 0;">
+                <Label text="Default Admin Credentials:" styleClass="hint-title"/>
+                <Label text="admin@fitpro.com  /  admin123" styleClass="hint-text"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</AnchorPane>

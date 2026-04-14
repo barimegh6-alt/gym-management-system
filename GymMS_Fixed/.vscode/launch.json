@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run FitPro GMS",
+            "request": "launch",
+            "mainClass": "ui.MainApp",
+            "vmArgs": "--module-path ${env:JAVAFX_HOME}/lib --add-modules javafx.controls,javafx.fxml",
+            "classpath": ["${workspaceFolder}/src", "${workspaceFolder}/lib/*"],
+            "sourcePaths": ["${workspaceFolder}/src"]
+        }
+    ]
+}

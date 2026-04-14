@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ui.TrainersController"
+      spacing="0"
+      maxWidth="1.7976931348623157E308"
+      maxHeight="1.7976931348623157E308">
+
+    <!-- PAGE HEADER -->
+    <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="14"
+          minHeight="54" maxHeight="54">
+        <padding><Insets top="0" bottom="0" left="16" right="16"/></padding>
+        <Label text="🏋  Trainer Management" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" styleClass="search-field"
+                   promptText="🔍  Search trainers…" prefWidth="220"/>
+        <Button text="Search"    styleClass="btn-secondary" onAction="#handleSearch"/>
+        <Button text="↺ Refresh" styleClass="btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+
+    <HBox spacing="14" VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308">
+        <padding><Insets top="14" bottom="12" left="16" right="16"/></padding>
+
+        <!-- TABLE — column widths reduced so form panel is always visible -->
+        <VBox HBox.hgrow="ALWAYS" spacing="10" maxWidth="1.7976931348623157E308">
+            <TableView fx:id="trainersTable" VBox.vgrow="ALWAYS" styleClass="data-table"
+                       maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308">
+                <columns>
+                    <TableColumn fx:id="colId"             text="ID"           prefWidth="46"/>
+                    <TableColumn fx:id="colName"           text="Name"         prefWidth="128"/>
+                    <TableColumn fx:id="colEmail"          text="Email"        prefWidth="160"/>
+                    <TableColumn fx:id="colPhone"          text="Phone"        prefWidth="100"/>
+                    <TableColumn fx:id="colSpecialization" text="Specialization" prefWidth="128"/>
+                    <TableColumn fx:id="colExperience"     text="Exp (yrs)"    prefWidth="68"/>
+                    <TableColumn fx:id="colQualification"  text="Qualification" prefWidth="108"/>
+                    <TableColumn fx:id="colSalary"         text="Salary"       prefWidth="84"/>
+                    <TableColumn fx:id="colAvailability"   text="Type"         prefWidth="80"/>
+                    <TableColumn fx:id="colStatus"         text="Status"       prefWidth="72"/>
+                </columns>
+                <placeholder>
+                    <Label text="No trainers found. Add one using the form →"
+                           style="-fx-text-fill:#475569;-fx-font-size:13px;"/>
+                </placeholder>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER_LEFT" minHeight="38">
+                <Button text="🗑  Delete Selected" styleClass="btn-danger" onAction="#handleDelete"/>
+                <Label fx:id="messageLabel" styleClass="msg-label" wrapText="true" maxWidth="420"/>
+            </HBox>
+        </VBox>
+
+        <!-- FORM in ScrollPane -->
+        <ScrollPane prefWidth="306" minWidth="306" maxWidth="306"
+                    fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308"
+                    style="-fx-background-color:transparent;-fx-background:transparent;">
+
+            <VBox styleClass="form-panel" spacing="11" maxWidth="1.7976931348623157E308">
+                <padding><Insets top="16" bottom="20" left="16" right="16"/></padding>
+
+                <Label text="Add / Edit Trainer" styleClass="form-title"/>
+                <Separator/>
+
+                <VBox spacing="4">
+                    <Label text="FULL NAME *" styleClass="field-label"/>
+                    <TextField fx:id="nameField" styleClass="input-field" promptText="Trainer name"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="EMAIL *" styleClass="field-label"/>
+                    <TextField fx:id="emailField" styleClass="input-field" promptText="Email address"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="PHONE * (10 digits)" styleClass="field-label"/>
+                    <TextField fx:id="phoneField" styleClass="input-field" promptText="9876543210"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="PASSWORD *" styleClass="field-label"/>
+                    <PasswordField fx:id="passwordField" styleClass="input-field" promptText="Min 4 chars"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="SPECIALIZATION *" styleClass="field-label"/>
+                    <TextField fx:id="specializationField" styleClass="input-field"
+                               promptText="e.g. CrossFit, Yoga"/>
+                </VBox>
+                <HBox spacing="10">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="EXPERIENCE (yrs) *" styleClass="field-label"/>
+                        <TextField fx:id="experienceField" styleClass="input-field" promptText="Years"/>
+                    </VBox>
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="SALARY *" styleClass="field-label"/>
+                        <TextField fx:id="salaryField" styleClass="input-field" promptText="Amount"/>
+                    </VBox>
+                </HBox>
+                <VBox spacing="4">
+                    <Label text="QUALIFICATION" styleClass="field-label"/>
+                    <TextField fx:id="qualificationField" styleClass="input-field"
+                               promptText="e.g. B.P.Ed, CPT"/>
+                </VBox>
+                <HBox spacing="10">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="AVAILABILITY" styleClass="field-label"/>
+                        <ComboBox fx:id="availabilityCombo" styleClass="combo-field"
+                                  maxWidth="1.7976931348623157E308"/>
+                    </VBox>
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="STATUS" styleClass="field-label"/>
+                        <ComboBox fx:id="statusCombo" styleClass="combo-field"
+                                  maxWidth="1.7976931348623157E308"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-padding:8 0 0 0;">
+                    <Button text="➕  Add Trainer"
+                            styleClass="btn-primary" onAction="#handleAdd"
+                            maxWidth="1.7976931348623157E308" prefHeight="40"/>
+                    <HBox spacing="8">
+                        <Button fx:id="updateBtn" text="✏  Update"
+                                styleClass="btn-success" onAction="#handleUpdate"
+                                HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefHeight="38"/>
+                        <Button text="✖  Clear"
+                                styleClass="btn-secondary" onAction="#clearForm"
+                                HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefHeight="38"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </HBox>
+</VBox>
